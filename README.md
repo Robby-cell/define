@@ -28,7 +28,7 @@ git clone https://github.com/Robby-cell/define.git
 cd define
 cargo install --path .
 ```
-This will compile the binary and place it in your Cargo `bin` directory, allowing you to use the `define` command from anywhere on your system!
+This will compile the binary and place it in your Cargo `bin` directory, allowing you to use the `def` command from anywhere on your system!
 
 ---
 
@@ -36,33 +36,33 @@ This will compile the binary and place it in your Cargo `bin` directory, allowin
 
 Just pass the word you want to look up:
 ```bash
-define serendipity
+def serendipity
 ```
 
 ### Options & Flags
 
 | Flag / Option | Short | Description | Example |
 | :--- | :---: | :--- | :--- |
-| `--play` | `-p` | Plays the audio pronunciation of the word. | `define ubiquitous -p` |
-| `--mode` | `-m` | Output mode: `dict`, `thesaurus`, or `both` (default). | `define beautiful --mode thesaurus` |
-| `--lang` | `-l` | Language code (default is `en`). | `define hola --lang es` |
-| `--help` | `-h` | Prints help information. | `define --help` |
+| `--play` | `-p` | Plays the audio pronunciation of the word. | `def ubiquitous -p` |
+| `--mode` | `-m` | Output mode: `dict`, `thesaurus`, or `both` (default). | `def beautiful --mode thesaurus` |
+| `--lang` | `-l` | Language code (default is `en`). | `def hola --lang es` |
+| `--help` | `-h` | Prints help information. | `def --help` |
 
 ### Examples
 
 **1. Play audio while getting a definition:**
 ```bash
-define ephemeral -p
+def ephemeral -p
 ```
 
 **2. Use as a pure thesaurus (synonyms & antonyms only):**
 ```bash
-define fast --mode thesaurus
+def fast --mode thesaurus
 ```
 
 **3. Look up a word in a foreign language:**
 ```bash
-define chat --lang fr
+def chat --lang fr
 ```
 
 ---
