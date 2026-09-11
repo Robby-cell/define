@@ -60,7 +60,7 @@ fn spinner(msg: impl Into<String>) -> ProgressBar {
 fn main() {
     let cli = Cli::parse();
 
-    // ── Fetch ──────────────────────────────────────────────────────────────
+    // Fetch
     let pb = spinner(format!("Looking up '{}'…", cli.word));
     let entries = match api::fetch_word(&cli.word, &cli.lang) {
         Ok(e) => e,
@@ -77,14 +77,14 @@ fn main() {
         entries[0].word
     ));
 
-    // ── Display ────────────────────────────────────────────────────────────
+    // Display
     match cli.mode {
         Mode::Dict => display::display_dictionary(&entries),
         Mode::Thesaurus => display::display_thesaurus(&entries),
         Mode::Both => display::display_both(&entries),
     }
 
-    // ── Optional audio playback ────────────────────────────────────────────
+    // Optional audio playback
     if cli.play {
         let pb = spinner("Fetching pronunciation audio…".to_string());
         match display::play_audio(&entries) {
