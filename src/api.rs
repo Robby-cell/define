@@ -1,3 +1,5 @@
+use std::net::{IpAddr, Ipv4Addr};
+
 use reqwest::blocking::Client;
 
 use crate::models::WordEntry;
@@ -8,6 +10,7 @@ const BASE_URL: &str = "https://api.dictionaryapi.dev/api/v2/entries";
 pub fn fetch_word(word: &str, lang: &str) -> Result<Vec<WordEntry>, String> {
     let client = Client::builder()
         .timeout(std::time::Duration::from_secs(15))
+        .local_address(IpAddr::V4(Ipv4Addr::UNSPECIFIED))
         .build()
         .map_err(|e| format!("Failed to build HTTP client: {}", e))?;
 
@@ -15,9 +18,9 @@ pub fn fetch_word(word: &str, lang: &str) -> Result<Vec<WordEntry>, String> {
 
     let resp = client
         .get(&url)
-        .header("User-Agent", "define/0.1 (rust CLI)")
+        .header("User-Agent", "Mozilla/5.0")
         .send()
-        .map_err(|e| format!("HTTP request failed: {}", e))?;
+        .map_err(|e| format!("HTTP request failed: {e}"))?;
 
     let status = resp.status();
     let text = resp
