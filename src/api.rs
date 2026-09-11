@@ -26,10 +26,10 @@ pub fn fetch_word(word: &str, lang: &str) -> Result<Vec<WordEntry>, String> {
 
     // The API returns a JSON object (not array) when a word is not found.
     if !status.is_success() || !text.trim_start().starts_with('[') {
-        if let Ok(val) = serde_json::from_str::<serde_json::Value>(&text) {
-            if let Some(title) = val.get("title").and_then(|t| t.as_str()) {
-                return Err(format!("{}: '{}'", title, word));
-            }
+        if let Ok(val) = serde_json::from_str::<serde_json::Value>(&text)
+            && let Some(title) = val.get("title").and_then(|t| t.as_str())
+        {
+            return Err(format!("{}: '{}'", title, word));
         }
         return Err(format!(
             "No definitions found for '{}' (lang: {})",

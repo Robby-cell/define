@@ -23,7 +23,7 @@ pub(crate) fn play_bytes(bytes: &[u8]) -> Result<(), String> {
     };
 
     // 3. Create a Player connected to the OS-Sink's mixer
-    let player = Player::connect_new(&handle.mixer());
+    let player = Player::connect_new(handle.mixer());
 
     // 4. Add the decoded source to the player
     player.append(source);
